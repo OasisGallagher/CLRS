@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.mathopenref.com/coordpolygonarea2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="canonical" href="./AreaOfSimplePolygons_files/AreaOfSimplePolygons.html">
+<meta property="fb:page_id" content="104123119549">
+<link rel="shortcut icon" href="http://www.mathopenref.com/favicon.ico">
+<title>Area of a polygon algorithm - Math Open Reference</title>
+
+<meta name="Keywords" content="polygon,area,algorithm">
+<meta name="Description" content="A method of calculating the area of a polygon given the coordinates of each vertex.">
+
+<link href="./AreaOfSimplePolygons_files/css.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" async="" src="./AreaOfSimplePolygons_files/ga.js"></script><script src="./AreaOfSimplePolygons_files/js.js" type="text/javascript"> </script><style type="text/css"></style>
+<style>
+h2 {margin-top: 40px; font-size:135%}
+</style>
+
+<!-- googlecode  -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8281150-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+
+<body onload="initPage(null);" onkeypress="checkForEnterKey(event); return true;">
+<a name="maincontent"> </a><table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+<!-- @@include c:/tmor/admin/includes/navbar.txt  -->
+
+<!-- navbar include starts  -->
+
+<tbody><tr id="tdrow1">
+	<td id="tdlogo">
+	  Math Open Reference
+	  <span id="tdsrch" style="font-size:65%; padding-left:250px">
+	  Search
+	  </span>
+	  <input type="text" id="searchArg" onkeypress="checkForEnterKey(event); return true;">
+	  <span style="font-size:65%; padding-left:5px; cursor:pointer" onclick="doSearch()">GO &gt;</span>
+	  <iframe id="searchbuffer" width="5" height="5" frameborder="no" style="visibility:hidden"></iframe>
+	</td>
+</tr>
+
+
+<tr>
+	<td class="navBar2"> <!-- command bar -  row2 - Suppressed for printing -->
+
+			<div class="navL"><a href="http://www.mathopenref.com/index.html"> Home</a></div>
+			<div class="navL"><a href="http://www.mathopenref.com/site/contacts.php">Contact</a> </div>
+			<div class="navL"><a href="http://www.mathopenref.com/site/about.html">About</a>	 </div>
+			<div class="navL"><a href="http://www.mathopenref.com/common/indexpage.html">Subject index</a> </div>
+			<div class="navL"><a href="http://www.mathopenref.com/common/mathwords.html">Word index</a> </div>
+			<div class="navL"><a href="javascript: commentOnPage()">Feedback</a> </div>
+			<div class="navL"><a href="javascript:  emailPage()">Email page</a> </div>
+
+
+	</td>
+</tr>
+
+
+
+
+<!-- link unit -->
+<tr class="topLinkUnit">
+	<td height="40" valign="bottom" style="padding-left:270px; ">
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-2974595584684519";
+	/* 468x15, created 2/25/11 topnavlink */
+	google_ad_slot = "6910866545";
+	google_ad_width = 468;
+	google_ad_height = 15;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+	</td>
+</tr>
+
+
+<!-- Jump target for nav bypass link  -->
+
+
+<!-- include ends -->
+<tr>
+<td>
+
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+
+<!-- @@include c:/tmor/admin/includes/leftcol.txt  -->
+
+
+
+
+<td valign="top" align="left" width="190" class="leftColTD" style="padding:0 0 0 5px">
+	<div class="advertisement">
+	<a href="http://www.mathopenref.com/site/ads.html"> About these <br> ADVERTISEMENTS </a>
+	</div>
+
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-2974595584684519";
+	/* 160x600, created 2/25/11 mainleft1*/
+	google_ad_slot = "9388638622";
+	google_ad_width = 160;
+	google_ad_height = 600;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+
+        <br><br><br>
+
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-2974595584684519";
+	/* 160x600, created 2/25/11 mainleft2*/
+	google_ad_slot = "6765523960";
+	google_ad_width = 160;
+	google_ad_height = 600;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+
+</td><td width="600" valign="top">
+
+<h1>Algorithm to find the area of a polygon</h1>
+
+
+<p>
+If you know the coordinates of the 
+<a href="http://www.mathopenref.com/vertex.html" title="Corners. The point where two sides meet">vertices</a> of a polygon, this 
+<a href="http://www.mathopenref.com/algorithm.html" title="A set of step-by-step instructions for performing some task or calculation">algorithm</a>
+can be used to find the area.  
+</p>
+
+<h3>Parameters</h3>
+
+<table cellpadding="3" style=" margin:12px 0 12px 30px">
+<tbody><tr>
+	<td valign="top">X, Y </td>
+	<td>Arrays of the x and y coordinates of the vertices, 
+	    traced in a clockwise direction, starting at any vertex.   
+        If you trace them counterclockwise, the result will be correct but have a negative sign.</td>
+</tr>
+<tr>
+	<td>numPoints</td>
+	<td>The number of vertices</td>
+</tr>
+<tr>
+	<td>Returns</td>
+	<td> the area of the polygon</td>
+</tr>
+</tbody></table>
+
+
+<p>
+The algorithm, in JavaScript:
+</p>
+
+
+<pre style="font-size: 14px; padding: 5px; border:1px solid #aacccc">
+function polygonArea(X, Y, numPoints) 
+{ 
+  area = 0;         // Accumulates area in the loop
+  j = numPoints-1;  // The last vertex is the 'previous' one to the first
+
+  for (i=0; i&lt;numPoints; i++)
+    { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]); 
+      j = i;  //j is previous vertex to i
+    }
+  return area/2;
+}
+
+</pre>
+
+<p>
+The algorithm assumes the usual mathematical convention that positive <i>y</i> points upwards. 
+In computer systems where positive <i>y</i> is downwards (most of them)
+the easiest thing to do is list the vertices counter-clockwise using the "positive y down" coordinates. 
+The two effects then cancel out to produce a positive area.
+</p>
+
+
+<h2>Example</h2>
+<p>
+<img class="gImgRight" src="./AreaOfSimplePolygons_files/poly2.png" width="182" height="183" border="0" alt="">
+The following JavaScript code will find the area of the figure on the right.   
+It will output "Area=128" which by inspection matches the figure.
+</p><pre style="font-size: 14px; padding-left: 25px">var xPts = [4,  4,  8,  8, -4,-4];
+var yPts = [6, -4, -4, -8, -8, 6];
+var a = polygonArea(xPts, yPts, 6);
+alert("Area  = " + a);
+</pre>
+<p></p>
+
+<h2>How it works</h2>
+<table>
+
+<tbody><tr>
+	<td><img src="./AreaOfSimplePolygons_files/4.gif" width="245" height="245" border="0" alt=""></td>
+	<td>Consider one side of the polygon.  
+     	The formula is based on taking the area to the left of the chosen side, all the way to the Y-axis.  
+	    That area is shaded grey in this illustration.
+	</td>
+</tr>
+
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/5.gif" width="245" height="245" border="0" alt=""></td>
+	<td>
+	<p>That area is equal to the area of the grey rectangle in this picture.  (You can make the area a rectangle by removing a triangular  piece from the bottom right and putting it at the top left.)  So, the grey area is easily calculated as (X0 + X1) / 2 (the rectangle's width) times (Y0 - Y1) (the rectangle's height). 
+	</p>
+	<p>
+	This area is what we are adding to the accumulation variable area each time through the loop - but the /2 is moved to the end of the function for purposes of efficiency.
+	</p>
+</td>
+</tr>
+
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/6.gif" width="245" height="245" border="0" alt=""></td>
+	<td> Going down one side of the polygon adds all the grey area shown here.
+  </td>
+</tr>
+
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/7.gif" width="245" height="245" border="0" alt=""></td>
+	<td>
+	<p>
+	Then going up the other side of the polygon subtracts all the yellow area shown here, because when a side is going up, Y0-Y1 is a negative number.  
+	The area that wasn't subtracted (grey) is the area of the polygon. 
+	</p>
+
+	<p>
+	You don't have to start at the top of the polygon. You can start anywhere, go all the way around, 
+	and the numbers will still add up to the same value.  
+	</p>
+
+	<p>
+	Also, it doesn't matter whether some or all of the polygon's corners are in the negative-X space, negative-Y space, or both,
+	the result is still the same.
+	</p>
+	</td>
+</tr>
+
+</tbody></table>
+
+
+
+<h2>A more complex case</h2>
+<table>
+<tbody><tr>
+	<td><img src="./AreaOfSimplePolygons_files/8.gif" width="245" height="245" border="0" alt=""></td>
+	<td>What if the polygon is something unusual like this?  
+    </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/9.gif" width="245" height="245" border="0" alt=""></td>
+	<td>Draw a horizontal line through every corner of the polygon. 
+	    This divides the polygon into horizontal strips which are partitioned by straight pieces of the polygon's sides.
+    </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/91.gif" width="245" height="245" border="0" alt=""></td>
+	<td> Now look at just one strip.  The right-most segment (red) adds the grey area to the total...
+    </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/92.gif" width="245" height="245" border="0" alt=""></td>
+	<td> ...then the next segment removes the yellow area...
+  </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/93.gif" width="245" height="245" border="0" alt=""></td>
+	<td> ...then the next segment adds the blue area...
+  </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/94.gif" width="245" height="245" border="0" alt=""></td>
+	<td> ...then the next segment removes the yellow area.
+  </td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/95.gif" width="245" height="245" border="0" alt=""></td>
+	<td>Only the grey area (in this illustration) remains in the total, and it's clearly the polygon's area within this strip.</td>
+</tr>
+</tbody></table>
+
+<p>
+Of course, the polygonArea() function is not breaking the polygon into strips like this. 
+But since the area to the left of any one side must be equal to the sum of that side's strip-by-strip pieces, 
+the grand total must be the same, and must be equal to the area of the whole polygon.
+</p>
+
+
+<h2>Limitations</h2>
+<p>
+There are circumstances where the algorithm will produce the wrong or unexpected results.  They all have to do with self-crossing 
+polygons where one side crosses over another side of the same polygon.   It is not surprising that this happens - almost all the theorems about polygons also fail with self-intersecting polygons.
+</p>
+
+
+<table>
+<tbody><tr>
+	<td><img src="./AreaOfSimplePolygons_files/1.gif" width="173" height="185" border="0" alt=""></td>
+	<td><p>
+	    If the polygon crosses over itself (i.e. is not "simple") the algorithm will fail. 
+		</p>
+		
+		<p>The parts of the polygon that are traced clockwise count as positive area, and the parts that are traced counterclockwise count as negative area.   So for example, with the polygon on the left, the algorithm will return zero, 
+		which is probably not what you would expect.
+		</p>
+</td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/2.gif" width="212" height="128" border="0" alt=""></td>
+	<td><p>
+	    A polygon can be self-crossing, yet still traced entirely clockwise.  In that case, the area is all positive, 
+	    but the overlap area (blue) counts twice.  
+		</p>
+
+		<p>
+		In this example, the area returned would be:  (grey + 2*blue).
+	    A triple-overlap would result in tripling of the overlap area, etc.  The result will be too large.
+		</p>
+	</td>
+</tr>
+<tr>
+	<td><img src="./AreaOfSimplePolygons_files/3.gif" width="240" height="173" border="0" alt=""></td>
+	<td>If the polygon has a 'twist' , such that part of the polygon has positive area and part has negative area, and those two areas 
+	    overlap, then the overlap area cancels out and does not count toward the total area at all. 
+	    In this example, the function returns (grey - red), which will be too low.
+		</td>
+</tr>
+
+</tbody></table>
+
+
+<h2>Acknowledgments</h2>
+<p>
+Thanks to Darel Rex Finley for permission to reproduce this entry.  The original can be found on his 
+<a href="http://alienryderflex.com/polygon_area">web page</a>.
+</p>
+
+<!-- @@include c:/tmor/admin/includes/coordcite.txt  -->
+
+
+<h2>Other Coordinate Geometry entries</h2>
+
+<div class="lowerRect">
+	<script type="text/javascript"><!--
+	google_ad_client = "ca-pub-2974595584684519";
+	google_ad_slot = "9351412367";
+	google_ad_width = 336;
+	google_ad_height = 280;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div>
+
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordintro.html">Introduction to coordinate geometry</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordplane.html">The coordinate plane</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/origin.html">The origin of the plane</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/axis.html">Axis definition</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordpoint.html">Coordinates of a point</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coorddist.html">Distance between two points</a></li>
+</ul>
+
+
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordlineintro.html">Introduction to Lines <br> in Coordinate Geometry</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordline.html">Line (Coordinate Geometry)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordray.html">Ray (Coordinate Geometry)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordsegment.html">Segment (Coordinate Geometry)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordmidpoint.html">Midpoint Theorem</a></li>
+</ul>
+
+<ul class="citeUL">
+       <li><a class="gSeeAlso" href="http://www.mathopenref.com/coordpointdist.html">Distance from a point to a line</a></li>
+	  <ul>
+	  <li><a class="gSeeAlso" href="http://www.mathopenref.com/coordpointdistvh.html"> - When line is horizontal or vertical</a></li>
+	  <li><a class="gSeeAlso" href="http://www.mathopenref.com/coordpointdisteqn.html"> - Using two line equations</a></li>
+	  <li><a class="gSeeAlso" href="http://www.mathopenref.com/coordpointdisttrig.html"> - Using trigonometry</a></li>
+	  <li><a class="gSeeAlso" href="http://www.mathopenref.com/coordpointdistformula.html"> - Using a formula</a></li>
+	  </ul>
+</ul>
+
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordslope.html">Slope (m) of a line</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordintercept.html">Intercept (b) of a line</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordequation.html">Equation of a line in slope-intercept form  y=mx+b </a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordequationps.html">Equation of a line in point-slope form y=m(x-Px)+Py </a></li>
+</ul>
+
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordvertical.html">Vertical lines</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordhorizontal.html">Horizontal lines</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordparallel.html">Parallel lines </a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordperpendicular.html">Perpendicular lines</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordintersection.html">Intersecting lines</a></li>
+
+</ul>
+
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordbounds.html">Cirumscribed rectangle (bounding box)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordtrianglearea.html">Area of a triangle (formula method)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordtriangleareabox.html">Area of a triangle (box method)</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordcentroid.html">Centroid of a triangle</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordincenter.html">Incenter of a triangle</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordpolygonarea.html">Area of a polygon</a></li>
+	<li>  <a class="gSeeAlso" href="./AreaOfSimplePolygons_files/AreaOfSimplePolygons.html">Algorithm to find the area of a polygon</a></li>
+	<li>  <a class="gSeeAlso" href="http://www.mathopenref.com/coordpolygonareacalc.html">Area of a polygon (calculator)</a></li>
+	<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordrectangle.html">Rectangle</a></li>
+		<ul>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordrectangle.html">Definition and properties, diagonals</a></li>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordrectareaperim.html">Area and perimeter</a></li>
+		</ul>
+	<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordsquare.html">Square</a></li>
+		<ul>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordsquare.html">Definition and properties, diagonals</a></li>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordsquareareaperim.html">Area and perimeter</a></li>
+		</ul>
+	<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordtrapezoid.html">Trapezoid</a></li>
+		<ul>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordtrapezoid.html">Definition and properties, altitude, median</a></li>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordtrapareaperim.html">Area and perimeter</a></li>
+		</ul>
+	<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordparallelogram.html">Parallelogram</a></li>
+		<ul>
+		<li><a class="gSeeAlso" href="http://www.mathopenref.com/coordparallelogram.html">Definition and properties, altitude, diagonals</a></li>
+		</ul>
+
+
+</ul>
+<ul class="citeUL">
+	<li>  <a class="gSeeAlso" style="color:green" href="http://www.mathopenref.com/coordblank.html">Print blank graph paper</a></li>
+</ul>
+
+
+<!-- @@include c:/tmor/admin/includes/smallprint.txt  -->
+
+<!-- include starts  -->
+<form id="feedback" action="http://www.mathopenref.com/site/contacts.php" method="post">
+	<input class="fbInput1" type="hidden" name="refpage" id="refpage" value="" size="25">		
+</form>
+
+<form id="emailto" action="http://www.mathopenref.com/site/emailto.php" method="post">
+	<input type="hidden" name="docTitle" id="docTitle" value="" size="25">		
+	<input type="hidden" name="docUrl" id="docUrl" value="" size="25">		
+</form>
+
+
+
+
+<div class="legal">
+  (C) 2009 Copyright Math Open Reference. All rights reserved 
+</div>
+
+<!-- include ends -->
+
+</td>  
+
+<!-- @@include c:/tmor/admin/includes/rightcol.txt  -->
+
+<td valign="top">
+<div style="width:160px;  margin:28px 5px 0 30px;  ">
+
+	<!-- Ad Unit [15057] Math Open Reference-160x600-5 -->
+	<div id="switch_placeholder_6aa65ef9f7c79d4717e7c4a0a0c43c59" class="switch_placeholder"></div>
+	<script type="text/javascript" src="http://delivery.us.myswitchads.com/adserver/sat.js"></script>
+	<script type="text/javascript"> __switch_obj.addInstance({"z":15057,"targetId":"switch_placeholder_6aa65ef9f7c79d4717e7c4a0a0c43c59","width":"160","height":"600"}); </script>
+	</div>
+</td>
+</tr>
+</tbody></table>
+
+</td></tr></tbody></table>
+
+<!-- @@include c:/tmor/admin/includes/hitcounter.txt  -->
+
+
+<!-- Removed Feb26 2010 JP -->
+
+
+
+</body></html>

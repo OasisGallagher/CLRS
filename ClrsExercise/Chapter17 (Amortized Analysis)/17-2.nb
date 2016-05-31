@@ -1,0 +1,379 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     12184,        370]
+NotebookOptionsPosition[     11548,        344]
+NotebookOutlinePosition[     11902,        360]
+CellTagsIndexPosition[     11859,        357]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"(", "1", ")"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Although", " ", "each", " ", "individual", " ", "array", " ", "is", " ", 
+     "sorted"}], ",", 
+    RowBox[{
+    "elements", " ", "in", " ", "different", " ", "arrays", "\n", "bear", " ",
+      "no", " ", "particular", " ", "relationship", " ", "to", " ", "each", 
+     " ", 
+     RowBox[{"other", "."}]}]}], "*)"}]}], "\n", 
+ RowBox[{"\:7531\:4e8e\:6bcf\:6bb5\:6570\:7ec4\:4e4b\:95f4\:6ca1\:6709\:5173\
+\:7cfb", ",", "\:6240\:4ee5", ",", 
+  RowBox[{
+  "\:9700\:8981\:904d\:5386\:5404\:4e2a\:6570\:7ec4", ".", 
+   "\[IndentingNewLine]", Cell["\<\
+bool BinarySearch(sortedArray,value);
+bool Search(value)
+{
+\tfor(int i=0;i<k;++i)
+\t\tif(BinarySearch(A[i],value))
+\t\t\treturn true;
+\treturn false;
+}\
+\>", "Program",
+    CellChangeTimes->{3.6245735092725267`*^9}]}]}], "\n", 
+ RowBox[{"\:6700\:574f\:60c5\:51b5\:4e0b", ",", 
+  "\:9700\:8981\:904d\:5386k\:4e2a\:6570\:7ec4", ",", 
+  SuperscriptBox[
+   "\:7b2ci\:4e2a\:6570\:7ec4\:7684\:5143\:7d20\:4e2a\:6570\:4e3a2", "i"], 
+  ",", "\:56e0\:6b64", ",", 
+  RowBox[{
+   RowBox[{"\:603b\:7684\:590d\:6742\:5ea6\:4e3a", ":", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "0"}], 
+      RowBox[{"k", "-", "1"}]], 
+     RowBox[{"log", 
+      RowBox[{"(", 
+       SuperscriptBox["2", "i"], ")"}]}]}]}], "=", 
+   RowBox[{
+    RowBox[{"k", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"k", "-", "1"}], ")"}], "/", "2"}]}], "=", 
+    RowBox[{"O", 
+     RowBox[{
+      RowBox[{"(", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"log", 
+          RowBox[{"(", "n", ")"}]}], ")"}], "2"], ")"}], ".", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(", "2", ")"}]}]}]}]}]}], "\[IndentingNewLine]", Cell["\<\
+void Insert(value)
+{
+\tint i = 0;
+\tB = [value];
+\tfor(; i < k && !A[i].Empty; ++i)
+\t\tB = Merge(B, A[i]);
+
+\tif(i >= k)
+\t\terror(\"overflow\");
+
+\tA[i] = B;
+}\
+\>", "Program",
+  CellChangeTimes->{3.62457339673009*^9}], "\[IndentingNewLine]", 
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["\:5b9a\:4e49\[Phi]", "i"], 
+    "\:4e3a\:7b2ci\:6b21\:63d2\:5165\:4e4b\:540e"}], "\:ff0c", 
+   "\:6570\:636e\:7ed3\:6784\:7684\:52bf", "\:3002", "\:5e76\:5b9a\:4e49", 
+   "\:ff1a", "\[IndentingNewLine]", 
+   RowBox[{
+    SubscriptBox["\[Phi]", "i"], "=", 
+    RowBox[{
+     UnderscriptBox["\[Sum]", 
+      RowBox[{"x", "\[Element]", "A"}]], 
+     RowBox[{"(", 
+      RowBox[{"k", "-", 
+       RowBox[{"p", "[", "x", "]"}]}], ")"}]}]}], "\:ff0c", "\:5176\:4e2d", 
+   "\:ff1a", "\[IndentingNewLine]", 
+   RowBox[{
+    SubscriptBox["A", "i"], 
+    "\:4e3a\:7ecf\:8fc7\:7b2ci\:6b21\:63d2\:5165\:540e\:7684\:5bb9\:5668A"}], 
+   "\:3002", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"p", "[", "x", "]"}], 
+    "\:4e3ax\:5728\:5bb9\:5668A\:4e2d\:6240\:5728\:6570\:7ec4\:7684\:7d22\
+\:5f15"}], "\:3002", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\:4e0b\:9762\:8ba1\:7b97", 
+     SubscriptBox[
+      OverscriptBox[
+       SubscriptBox["c", "i"], "^"], Cell[""]]}], "=", 
+    RowBox[{
+     SubscriptBox["c", "i"], "+", 
+     SubscriptBox["\[Phi]", "i"], "-", 
+     SubscriptBox["\[Phi]", 
+      RowBox[{"i", "-", "1"}]]}]}], "\:3002", "\[IndentingNewLine]", 
+   RowBox[{
+    SubscriptBox["\:5f53n", "0"], "=", "0"}], "\:ff0c", 
+   RowBox[{
+    RowBox[{"\:5373A", "[", "0", "]"}], "\:4e3a\:7a7a\:65f6"}], "\:ff0c", 
+   RowBox[{
+    SubscriptBox["c", "i"], "=", "1"}], "\:ff0c", 
+   RowBox[{
+    RowBox[{"\[Delta]", "[", "\[Phi]", "]"}], "=", "k"}], "\:ff0c", 
+   RowBox[{
+   "\:5373\:5c06\:65b0\:5143\:7d20\:52a0\:5165\:5230A", "[", "0", "]"}], 
+   "\:ff0c", 
+   RowBox[{"\:4f7f\:6574\:4e2a\:7ed3\:6784\:7684\:52bf", "+", "1"}], "\:3002",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    SubscriptBox["\:5f53n", "0"], "\[NotEqual]", "0"}], "\:ff0c", 
+   RowBox[{
+    RowBox[{"\:5373A", "[", "0", "]"}], "\:975e\:7a7a\:65f6"}], "\:ff0c", 
+   RowBox[{
+    RowBox[{"\:5b9a\:4e49r\:4e3a\:6ee1\:8db3n", "[", "r", "]"}], "=", 
+    RowBox[{"0", "\:7684\:6700\:5c0f\:503c"}]}], "\:ff0c", 
+   RowBox[{"0", "\[LessEqual]", "r", "<=", 
+    RowBox[{"k", "-", "1"}]}], "\:3002", "\[IndentingNewLine]", 
+   "\:90a3\:4e48", "\:ff0c", 
+   RowBox[{
+    SubscriptBox["c", "i"], "=", 
+    RowBox[{
+     RowBox[{"2", "*", 
+      RowBox[{
+       UnderoverscriptBox["\[Sum]", 
+        RowBox[{"i", "=", "0"}], 
+        RowBox[{"r", "-", "1"}]], 
+       SuperscriptBox["2", "i"]}]}], "=", 
+     RowBox[{
+      SuperscriptBox["2", 
+       RowBox[{"r", "+", "1"}]], "+", "C"}]}]}], "\:ff0c", 
+   "\:5176\:4e2dC\:4e3a\:5e38\:6570", "\:3002", "\[IndentingNewLine]", 
+   "\:52bf\:80fd\:53d8\:5316\:4e3a", "\:ff1a", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Delta]", "[", "\[Phi]", "]"}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       UnderoverscriptBox["\[Sum]", 
+        RowBox[{"i", "=", "0"}], 
+        RowBox[{"r", "-", "1"}]], 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["2", "i"], "*", 
+         RowBox[{"(", 
+          RowBox[{"r", "-", "i"}], ")"}]}], ")"}]}], "+", "r"}], "=", 
+     RowBox[{
+      RowBox[{"-", 
+       SuperscriptBox["2", 
+        RowBox[{"1", "+", "r"}]]}], "+", "D"}]}]}], "\:ff0c", 
+   "\:5176\:4e2dD\:4e3a\:5e38\:6570", "\:ff0c", 
+   "\:989d\:5916\:589e\:52a0\:7684r\:4e3a\:65b0\:5143\:7d20\:52a0\:5165\:540e\
+\:7684\:52bf\:80fd\:53d8\:5316", "\:3002", "\[IndentingNewLine]", 
+   "\:6240\:4ee5", "\:ff0c", 
+   RowBox[{
+    SubscriptBox["\:6b64\:65f6\:7684d", "i"], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["c", "i"], "+", 
+      RowBox[{"\[Delta]", "[", "\[Phi]", "]"}]}], "=", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["2", 
+        RowBox[{"r", "+", "1"}]], "+", "C", "-", 
+       SuperscriptBox["2", 
+        RowBox[{"1", "+", "r"}]], "+", "D"}], "=", 
+      RowBox[{
+       RowBox[{"C", "+", "D"}], "=", "C\:4e3a\:5e38\:6570"}]}]}]}], "\:3002", 
+   "\[IndentingNewLine]", "\:56e0\:6b64", "\:ff1a", "\[IndentingNewLine]", 
+   RowBox[{
+    OverscriptBox[
+     SubscriptBox["c", "i"], "^"], "=", 
+    RowBox[{
+     RowBox[{
+      TagBox[GridBox[{
+         {"\[Piecewise]", GridBox[{
+            {"k", 
+             RowBox[{
+              SubscriptBox["n", "0"], "=", "0"}]},
+            {"C", "otherwise"}
+           },
+           AllowedDimensions->{2, Automatic},
+           Editable->True,
+           
+           GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+           GridBoxSpacings->{"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.84]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}},
+           Selectable->True]}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}},
+           "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.35]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}],
+       "Piecewise",
+       DeleteWithContents->True,
+       Editable->False,
+       SelectWithContents->True,
+       Selectable->False], "\:5373\:63d2\:5165\:7684\:4ee3\:4ef7\:4e3ak"}], 
+     "=", 
+     RowBox[{"O", 
+      RowBox[{"(", 
+       RowBox[{"log", 
+        RowBox[{"(", "n", ")"}]}], ")"}]}]}]}], "\:3002"}]}]}], "Input",
+ CellChangeTimes->{{3.6245327197964163`*^9, 3.6245328384798107`*^9}, {
+   3.6245328707213717`*^9, 3.6245330175375834`*^9}, {3.62453306542062*^9, 
+   3.6245332665251436`*^9}, {3.62453336086525*^9, 3.6245338720512123`*^9}, {
+   3.6245339048521557`*^9, 3.624534146820017*^9}, {3.6245342494796915`*^9, 
+   3.624534364989961*^9}, {3.6245729379458485`*^9, 3.624573062415968*^9}, {
+   3.6245731103587103`*^9, 3.624573172192247*^9}, {3.624573272901007*^9, 
+   3.6245732739060645`*^9}, 3.6245733209107533`*^9, {3.624573386399499*^9, 
+   3.624573752859459*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"2", "*", 
+  RowBox[{
+   UnderoverscriptBox["\[Sum]", 
+    RowBox[{"i", "=", "0"}], 
+    RowBox[{"r", "-", "1"}]], 
+   SuperscriptBox["2", "i"]}]}]], "Input",
+ CellChangeTimes->{{3.6245338779001265`*^9, 3.6245338936986947`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"2", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    SuperscriptBox["2", "r"]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.624533898607978*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   UnderoverscriptBox["\[Sum]", 
+    RowBox[{"i", "=", "0"}], 
+    RowBox[{"r", "-", "1"}]], 
+   RowBox[{"(", 
+    RowBox[{
+     SuperscriptBox["2", "i"], "*", 
+     RowBox[{"(", 
+      RowBox[{"r", "-", "i"}], ")"}]}], ")"}]}], "+", "r"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "2"}], "+", 
+  SuperscriptBox["2", 
+   RowBox[{"1", "+", "r"}]]}]], "Output",
+ CellChangeTimes->{3.6245340476646814`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(", "3", ")"}]], "Input",
+ CellChangeTimes->{{3.6245732800304146`*^9, 3.6245732817665143`*^9}, 
+   3.6245742977126226`*^9}],
+
+Cell[TextData[{
+ "void Delete(x)\n{\n\tint i = 0;\n\tfor(; i < k && n[i] != 0; ++i)\n\t\t;\n\t\
+\n\tif i == k\n\t\terror \"overflow error\";\n\t\n\tint j = 0;\n\tfor(; j < k \
+&& !BinarySearch(A[i], x); ++j)\n\t\t;\n\t\n\tif j == k\n\t\terror \"item not \
+found\";\n\t\n\tremove x from A[j];\n\tmove the last item of A[i] to A[j]; // \
+A[j] is full now.\n\tdivide A[i] into B = 1, 2, ... ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", 
+    RowBox[{"i", "-", "1"}]], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "  // ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "0"}], 
+      RowBox[{"i", "-", "1"}]], 
+     SuperscriptBox["2", "i"]}], "=", 
+    SuperscriptBox["2", "i"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "-1.\n\t\n\tfor(k = 0; k < i; ++k)\n\t\tA[k] = B[k];\n}"
+}], "Program",
+ CellChangeTimes->{{3.6245738119938416`*^9, 3.6245742266215568`*^9}, {
+  3.6245742574393196`*^9, 3.6245742770584416`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\:663e\:7136\:4e0a\:8ff0\:65b9\:6cd5\:7684\:4ee3\:4ef7\:4e3aO", 
+  RowBox[{
+   RowBox[{"(", "n", ")"}], "."}]}]], "Input",
+ CellChangeTimes->{{3.6245742795835857`*^9, 3.624574362926353*^9}, {
+  3.6245743940251317`*^9, 3.6245744201176243`*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.624572688743595*^9, 3.624572709412778*^9}}]
+},
+WindowSize->{817, 642},
+WindowMargins->{{Automatic, 56}, {5, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (2013\:5e742\:670813\
+\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 8504, 238, 1030, "Input"],
+Cell[CellGroupData[{
+Cell[9086, 262, 251, 7, 57, "Input"],
+Cell[9340, 271, 185, 6, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9562, 282, 285, 10, 57, "Input"],
+Cell[9850, 294, 160, 5, 31, "Output"]
+}, Open  ]],
+Cell[10025, 302, 147, 3, 31, "Input"],
+Cell[10175, 307, 1004, 25, 400, "Program"],
+Cell[11182, 334, 267, 5, 31, "Input"],
+Cell[11452, 341, 92, 1, 31, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
